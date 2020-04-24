@@ -1,22 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
   <head>
-    <meta charset="utf-8" />
+    <meta charset='utf-8' />
     <% application_name = ShopifyApp.configuration.application_name %>
     <title><%= application_name %></title>
     <%= stylesheet_link_tag 'application' %>
     <% if ShopifyApp.use_webpacker? %>
       <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <% else %>
-      <%= javascript_include_tag 'application', "data-turbolinks-track" => true %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <% end %>
     <%= csrf_meta_tags %>
   </head>
-
   <body>
-    <div class="app-wrapper">
-      <div class="app-content">
-        <main role="main">
+    <header>
+      <div id='promo-bar'>
+        <span>SHIPMENT TIMES MAY BE SLOWER THAN NORMAL DUE TO COVID-19</span>
+        <i class='fa fa-times' id='close-promo'></i>
+      </div>
+    </header>
+
+    <div class='app-wrapper'>
+      <div class='app-content'>
+        <main role='main'>
           <%= yield %>
         </main>
       </div>
@@ -24,7 +30,7 @@
 
     <%= render 'layouts/flash_messages' %>
 
-    <script src="https://unpkg.com/@shopify/app-bridge"></script>
+    <script src='https://unpkg.com/@shopify/app-bridge'></script>
 
     <%= content_tag(:div, nil, id: 'shopify-app-init', data: {
       api_key: ShopifyApp.configuration.api_key,
@@ -33,7 +39,7 @@
     } ) %>
 
     <% if content_for?(:javascript) %>
-      <div id="ContentForJavascript" data-turbolinks-temporary>
+      <div id='ContentForJavascript' data-turbolinks-temporary>
         <%= yield :javascript %>
       </div>
     <% end %>
