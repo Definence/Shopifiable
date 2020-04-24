@@ -1,5 +1,5 @@
 ShopifyApp.configure do |config|
-  config.application_name = "My Shopify App"
+  config.application_name = "Shopifiable"
   config.api_key = Rails.application.credentials.shopify_api_key
   config.secret = Rails.application.credentials.shopify_api_secret
   config.old_secret = ""
@@ -9,6 +9,7 @@ ShopifyApp.configure do |config|
   config.after_authenticate_job = false
   config.api_version = "2020-04"
   config.shop_session_repository = 'Shop'
+  config.user_session_repository = 'User'
 end
 
 # ShopifyApp::Utils.fetch_known_api_versions                        # Uncomment to fetch known api versions from shopify servers on boot
