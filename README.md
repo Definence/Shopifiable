@@ -22,3 +22,9 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+Required keys:
+```
+shopify_api_key
+shopify_api_secret
+```
