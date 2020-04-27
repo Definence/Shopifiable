@@ -16,6 +16,8 @@
 
 @import "font-awesome";
 
+$border-radius: 2px;
+
 body {
   background: #fff;
   color: #222;
@@ -28,28 +30,88 @@ body {
   font-size: 12px;
   letter-spacing: 1.7px;
 
-  #promo-bar {
-    background-color: black;
-    color: #ffffff;
-    min-height: 33px;
-    font-weight: 300;
-    width: 100%;
-    -webkit-transition: 0.3s;
-    transition: 0.3s;
-    padding: 7px 10px;
-    position: relative;
-    overflow: hidden;
-    text-align: center;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
+  a, a:link, a:visited {
+    text-decoration: none;
+    color: 'black';
+  }
 
-    i {
-      font-size: 14px;
+  button {
+    background-color: black;
+    outline: none;
+    border: 0;
+    color: white;
+    height: 45px;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-radius: $border-radius;
+    padding: 0 20px;
+    cursor: pointer;
+  }
+
+  select, input {
+    width: 100%;
+    max-width: 100%;
+    line-height: 43px;
+    height: 45px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    text-indent: 0.01px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border-radius: $border-radius;
+    padding: 0 10px;
+  }
+
+  select {
+    background: url('chevron.svg') no-repeat right 10px center;
+    background-size: 14px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    option {
+      font-weight: normal;
+      display: block;
+      white-space: pre;
+      min-height: 1.2em;
+      padding: 0px 2px 1px;
+    }
+  }
+
+  header {
+    h1 {
+      text-align: center;
+    }
+
+    .logo {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    #promo-bar {
+      background-color: black;
+      color: #ffffff;
+      min-height: 33px;
       font-weight: 300;
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%)
+      width: 100%;
+      -webkit-transition: 0.3s;
+      transition: 0.3s;
+      padding: 7px 10px;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+
+      i {
+        font-size: 14px;
+        font-weight: 300;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%)
+      }
     }
   }
 }

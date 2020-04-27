@@ -1,0 +1,47 @@
+// Place all the styles related to the Collections::Products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+#product-container {
+  display: flex;
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  #product-container-left {
+    margin: 2rem 4rem;
+    max-width: 40%;
+
+    #title {
+      font-size: 30px;
+      font-weight: 800;
+      text-transform: uppercase;
+      line-height: 35px;
+    }
+
+    #price {
+      font-size: 700%;
+      font-weight: 300;
+      font-style: normal;
+      font-family: serif;;
+    }
+
+    #quantity {
+      width: 60%;
+    }
+
+    #add-to-cart {
+      max-width: 36%;
+      width: 100%;
+      float: right;
+    }
+  }
+
+  #product-container-right {
+    max-width: 50%;
+
+    img {
+      width: 100%;
+    }
+  }
+}
