@@ -13,22 +13,7 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <header>
-      <div id='promo-bar'>
-        <span>SHIPMENT TIMES MAY BE SLOWER THAN NORMAL DUE TO COVID-19</span>
-        <i class='fa fa-times' id='close-promo'></i>
-      </div>
-
-      <h1>
-        <%= image_tag("factory43smokestack.png", class: 'logo') %>
-      </h1>
-
-      <ul>
-        <% @collections.each do |c| %>
-          <li><%= link_to c, collection_path(c), target: "_top" %></li>
-        <% end %>
-      </ul>
-    </header>
+    <%= render 'layouts/header' %>
 
     <div class='app-wrapper'>
       <div class='app-content'>

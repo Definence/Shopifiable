@@ -1,0 +1,56 @@
+header {
+  nav {
+    ul {
+      padding: 0;
+      text-align: center;
+
+      li {
+        list-style: none;
+        display: inline-block;
+        box-sizing: border-box;
+        padding: 1rem;
+
+        span {
+          position: relative;
+          text-transform: uppercase;
+          color: black;
+          font-size: 1rem;
+        }
+
+        .dropdown {
+          padding: 0.5rem 2rem;
+
+          .chevron {
+            transition: transform 0.4s ease-in-out;
+            width: 0.8rem;
+          }
+
+          &:hover .chevron {
+            transform: rotate(180deg) ;
+          }
+
+          &:hover ul {
+            max-height: 500px;
+            transition: max-height 0.7s ease-in-out;
+          }
+
+          ul {
+            max-height: 0;
+            transition: max-height 0.3s ease-in-out;
+            overflow: hidden;
+            background: rgb(233, 233, 233);
+            position: absolute;
+
+            li {
+              display: block;
+              color: black;
+              padding: 1rem 1.5rem;
+              min-width: 120px;
+              text-align: left;
+            }
+          }
+        }
+      }
+    }
+  }
+}

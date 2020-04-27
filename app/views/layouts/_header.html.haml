@@ -1,0 +1,18 @@
+%header
+  #promo-bar
+    %span='SHIPMENT TIMES MAY BE SLOWER THAN NORMAL DUE TO COVID-19'
+    %i{ class: 'fa fa-times', id: 'close-promo' }
+  %h1=image_tag("factory43smokestack.png", class: 'logo')
+  %nav
+    %ul
+      - @collections.each do |collection|
+        %li
+          - if collection[:tags].blank?
+            %span=collection[:title]
+          - else
+            .dropdown
+              %span=collection[:title]
+              =image_tag("chevron.svg", class: 'chevron')
+              %ul
+                - collection[:tags].map do |tag|
+                  %li=tag
