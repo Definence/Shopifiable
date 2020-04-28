@@ -4,15 +4,19 @@
     %i{ class: 'fa fa-times', id: 'close-promo' }
   %h1=image_tag("factory43smokestack.png", class: 'logo')
   %nav
-    %ul
+    %ul{ id: 'collections' }
       - @collections.each do |collection|
-        %li
+        %li{ class: 'collection' }
           - if collection[:tags].blank?
-            %span=collection[:title]
+            .nav-item
+              %span{ class: 'collection-title' }
+                %a{ href: "/collections/#{collection[:title]}" }=collection[:title]
           - else
-            .dropdown
-              %span=collection[:title]
-              =image_tag("chevron.svg", class: 'chevron')
-              %ul
-                - collection[:tags].map do |tag|
-                  %li=tag
+            .nav-item
+              %span{ class: 'collection-title' }
+                %a{ href: "/collections/#{collection[:title]}" }=collection[:title]
+                =image_tag("chevron.svg", class: 'chevron')
+                %ul
+                  - collection[:tags].map do |tag|
+                    %li
+                      %span{ class: 'tag-item' }=tag

@@ -4,13 +4,14 @@
     =@product.body_html.html_safe
     %span{ id: 'price' }="$ #{@product.variants.first.price}"
     %br
-    %label='Size'
-    %select
-      - @sizes.map do |size|
-        %option{ value: size }=size
-    %label='Quantity'
-    %br
-    %input{ type: 'number', id: 'quantity' }
-    %button{ id: 'add-to-cart' }='ADD TO CART'
+    =form_tag('/cart_items', method: :post) do
+      %label='Size'
+      %select{ required: true, name: 'item[id]' }
+        - @sizes.map do |size|
+          %option{ value: size[:value] }=size[:label]
+      %label='Quantity'
+      %br
+      %input{ type: 'number', id: 'quantity', name: 'item[quantity]', required: true }
+      %button{ id: 'add-to-cart', type: :button }='ADD TO CART'
   %div{ id: 'product-container-right' }
     %img{ src: @product.image.src }
