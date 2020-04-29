@@ -14,4 +14,8 @@ class ApplicationController < ActionController::Base
       { title: collection.title, tags: tags.uniq.reject { |c| c.empty? } }
     end
   end
+
+  def current_shop
+    @shop ||= ShopifyAPI::Shop.current
+  end
 end

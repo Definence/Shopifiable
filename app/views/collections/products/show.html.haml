@@ -12,6 +12,6 @@
       %label='Quantity'
       %br
       %input{ type: 'number', id: 'quantity', name: 'item[quantity]', required: true }
-      %button{ id: 'add-to-cart', type: :button }='ADD TO CART'
+      %button{ id: 'add-to-cart' }='ADD TO CART'
   %div{ id: 'product-container-right' }
     %img{ src: @product.image.src }

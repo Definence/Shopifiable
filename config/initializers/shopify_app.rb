@@ -3,9 +3,12 @@ ShopifyApp.configure do |config|
   config.api_key = Rails.application.credentials.shopify_api_key
   config.secret = Rails.application.credentials.shopify_api_secret
   config.old_secret = ""
-  config.scope = "write_products, write_product_listings" # Consult this page for more scope options:
-                                 # https://help.shopify.com/en/api/getting-started/authentication/oauth/scopes
-  config.embedded_app = true
+
+  # Consult this page for more scope options:
+  # https://help.shopify.com/en/api/getting-started/authentication/oauth/scopes
+  config.scope = "write_products, write_product_listings, write_customers, write_orders, write_inventory, write_shipping, write_checkouts, write_price_rules"
+
+  config.embedded_app = false
   config.after_authenticate_job = false
   config.api_version = "2020-04"
   config.shop_session_repository = 'Shop'

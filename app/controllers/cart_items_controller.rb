@@ -1,13 +1,15 @@
 class CartItemsController < ApplicationController
   def create
-    p '@@@'
-    p cart_item_params
-    p '@@@'
+    return head 422 if item_params[:quantity].blank? || item_params[:id].blank?
+
+    params = { id: item_params[:id], quantity: item_params[:quantity] }
+    # response = RestClient.post(url, params)
+    binding.pry
   end
 
   private
 
-  def cart_item_params
+  def item_params
     params.require(:item).permit(:quantity, :id)
   end
 end
