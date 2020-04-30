@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  include ShopifyApp::Authenticated
+  # include ShopifyApp::Authenticated
 
   before_action :define_collections
 
@@ -13,6 +13,10 @@ class ApplicationController < ActionController::Base
 
       { title: collection.title, tags: tags.uniq.reject { |c| c.empty? } }
     end
+  end
+
+  def shopify_client
+    @shopify_client ||= Shopifiable::Client.new(domain: 'shopifiable-app.myshopify.com')
   end
 
   def current_shop

@@ -3,9 +3,7 @@ $LOAD_PATH.unshift File.dirname(__FILE__)
 require 'resources/cart'
 
 module Shopifiable
-  class Client
-    include Cart
-
+  module Client
     def initialize(domain:)
       RestClient.log = 'stdout' if Rails.env.development?
       @domain = domain
@@ -20,8 +18,9 @@ module Shopifiable
     def request(url, method, params = {}, additional_headers = {})
       headers = {
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      }.merge(additional_headers)
+        'Accept': 'application/json',
+        # 'X-Shopify-Access-Token': ShopifyAPI::Session.send(:extract_current_session).token
+      }.merge(additional_headers).merge(ShopifyAPI::Base.headers)
 
       RestClient.send(method, url, params.to_json, headers)
     end

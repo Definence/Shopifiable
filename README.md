@@ -1,5 +1,3 @@
-# Important
-
 # Ruby version - 2.6.3
 
 # System dependencies
@@ -31,7 +29,7 @@ fill me
 
 ### To activate shop session
 ```ruby
-session = ShopifyAPI::Session.new(domain: 'shopifiable-app.myshopify.com', token: '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', api_version: "2020-04")
+session = ShopifyAPI::Session.new(domain: 'shopifiable-app.myshopify.com', token: Shop.first.shopify_token, api_version: "2020-04")
 ShopifyAPI::Base.activate_session(session)
 include ShopifyAPI
 shop = ShopifyAPI::Shop.current
