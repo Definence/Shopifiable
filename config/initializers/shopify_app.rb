@@ -1,5 +1,5 @@
 ShopifyApp.configure do |config|
-  config.application_name = "Shopifiable"
+  config.application_name = "Shopifiable PRIVATE"
   config.api_key = Rails.application.credentials.shopify_api_key
   config.secret = Rails.application.credentials.shopify_api_secret
   config.old_secret = ""
