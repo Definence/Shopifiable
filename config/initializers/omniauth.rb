@@ -16,8 +16,8 @@ provider :shopify,
       ''
     end
 
+    redirect_uri = Rails.env.development? ? 'http://localhost:3000' : 'https://shopifiable.herokuapp.com/'
     strategy.options[:client_options][:site] = shop
     strategy.options[:old_client_secret] = ShopifyApp.configuration.old_secret
-    strategy.options[:per_user_permissions] = strategy.session[:user_tokens]
   }
 end
