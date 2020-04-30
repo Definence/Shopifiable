@@ -4,19 +4,21 @@
     %i{ class: 'fa fa-times', id: 'close-promo' }
   %h1=image_tag("factory43smokestack.png", class: 'logo')
   %nav
-    %ul{ id: 'collections' }
+    %ul{ id: 'nav-items' }
       - @collections.each do |collection|
         %li{ class: 'collection' }
           - if collection[:tags].blank?
             .nav-item
-              %span{ class: 'collection-title' }
+              %span{ class: 'nav-title' }
                 %a{ href: "/collections/#{collection[:title]}" }=collection[:title]
           - else
             .nav-item
-              %span{ class: 'collection-title' }
+              %span{ class: 'nav-title' }
                 %a{ href: "/collections/#{collection[:title]}" }=collection[:title]
                 =image_tag("chevron.svg", class: 'chevron')
                 %ul
                   - collection[:tags].map do |tag|
                     %li
                       %span{ class: 'tag-item' }=tag
+      %span{ id: 'cart' }
+        %a{ id: 'cart-link', href: "/cart" }='Cart'

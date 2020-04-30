@@ -1,19 +1,33 @@
 header {
   nav {
-    #collections {
+    $nav-height: 45px;
+
+    #nav-items {
       padding: 0;
       text-align: center;
       display: flex;
       justify-content: center;
 
+      #cart {
+        position: absolute;
+        right: 1rem;
+        height: $nav-height;
+        font-size: 0.8rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        text-transform: uppercase;
+      }
+
       .collection {
         list-style: none;
         box-sizing: border-box;
-        height: 45px;
+        height: $nav-height;
         padding: 0 0.6rem;
         box-sizing: border-box;
 
-        .collection-title {
+        .nav-title {
           text-transform: uppercase;
           color: black;
           font-size: 1.0rem;

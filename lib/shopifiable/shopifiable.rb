@@ -1,29 +1,21 @@
 $LOAD_PATH.unshift File.dirname(__FILE__)
 
-require 'resources/cart'
-
 module Shopifiable
   module Client
-    def initialize(domain:)
-      RestClient.log = 'stdout' if Rails.env.development?
-      @domain = domain
-    end
-
     def base_url
-      api_key = Rails.application.credentials.shopify_api_key
-      password = Rails.application.credentials.shopify_password
-      @domain.include?('https://') ? @domain : "https://#{api_key}:#{password}@#{@domain}"
+      ShopifyAPI::Base.site
     end
 
-    def request(url, method, params = {}, additional_headers = {})
+    def request(url, method: :get, headers: {}, params: {})
       headers = {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        # 'X-Shopify-Access-Token': ShopifyAPI::Session.send(:extract_current_session).token
-      }.merge(additional_headers).merge(ShopifyAPI::Base.headers)
+      }.merge(ShopifyAPI::Base.headers)
 
-      RestClient.send(method, url, params.to_json, headers)
+      RestClient::Request.execute(method: method, url: url, headers: headers, params: params)
     end
-
   end
 end
+
+require 'resources/base'
+require 'resources/cart'
