@@ -1,4 +1,5 @@
 require('./flash_messages')
 require('./promo_bar')
+require('./cart')
 require('./collections/products')
 require('./layouts/header')

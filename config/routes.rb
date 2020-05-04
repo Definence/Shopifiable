@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   resources :collections, only: :show, param: :type do
     resources :products, only: :show, param: :guid, controller: 'collections/products'
   end
+
+  resource :cart, only: :show
 end

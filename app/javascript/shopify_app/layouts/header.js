@@ -1,12 +1,5 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const cartLink = document.getElementById('cart-link')
-  const cartitems = localStorage.getItem('cart')
+import { setCartCounter } from '../common/cart'
 
-  if (cartitems) {
-    const parsedItems = JSON.parse(cartitems)
-    let cartItemsQuantity = 0
-
-    parsedItems.forEach(({ quantity }) => { cartItemsQuantity = cartItemsQuantity + quantity })
-    if (cartItemsQuantity > 0) cartLink.textContent = `Cart (${cartItemsQuantity})`
-  }
+document.addEventListener('turbolinks:load', () => {
+  setCartCounter()
 })

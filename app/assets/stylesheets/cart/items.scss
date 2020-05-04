@@ -1,3 +1,26 @@
 // Place all the styles related to the Cart::Items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+#cart-items {
+  .cart-item-image {
+    max-width: 120px;
+  }
+
+  tr:nth-child(even) {
+    background: #cccccc
+  }
+
+  td {
+    text-align: center;
+
+    span {
+      img {
+        margin-left: 1rem;
+      }
+
+      display: block;
+      text-align: left;
+    }
+  }
+}
