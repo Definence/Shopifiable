@@ -1,15 +1,16 @@
-## Live DEMO
-> https://shopifiable.herokuapp.com
+## Live DEMO can be found [here](https://shopifiable-public.herokuapp.com/)
 
-## Ruby version - 2.6.3
+## Ruby version
+`2.6.3`
 
-## System dependencies - no system dependencies required
+## System dependencies
+`no system dependencies required`
 
 ## Configuration
 
-### Copy `master.key` into `config/master.key` from [here](https://docs.google.com/document/d/1qD1ejg1F_cTQwi9fshLuP9G9PHqF2wu0b7ycCxEdfB0/edit)
+#### Copy `master.key` into `config/master.key` from [here](https://docs.google.com/document/d/1qD1ejg1F_cTQwi9fshLuP9G9PHqF2wu0b7ycCxEdfB0/edit)
 
-### Required keys:
+#### Required keys:
 ```
 shopify_api_key
 shopify_api_secret
@@ -36,7 +37,7 @@ git push heroku master
 heroku open
 ```
 
-### To activate shop session
+#### To activate shop session
 ```ruby
 session = ShopifyAPI::Session.new(domain: 'shopifiable-app.myshopify.com', token: Shop.first.shopify_token, api_version: "2020-04")
 ShopifyAPI::Base.activate_session(session)
@@ -44,7 +45,7 @@ include ShopifyAPI
 shop = ShopifyAPI::Shop.current
 ```
 
-### To debug RestClient requests
+#### To debug RestClient requests
 ```ruby
 RestClient.log = 'stdout'
 ```

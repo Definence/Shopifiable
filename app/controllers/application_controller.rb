@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  # include ShopifyApp::Authenticated
+  include ShopifyApp::Authenticated
 
   before_action :define_collections
 
