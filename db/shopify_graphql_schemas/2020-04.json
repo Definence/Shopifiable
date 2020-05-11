@@ -14144,6 +14144,59 @@
           "possibleTypes": null
         },
         {
+          "kind": "OBJECT",
+          "name": "CustomerGenerateAccountActivationUrlPayload",
+          "description": "Return type for `customerGenerateAccountActivationUrl` mutation.",
+          "fields": [
+            {
+              "name": "accountActivationUrl",
+              "description": "The newly generated account activation URL.",
+              "args": [
+
+              ],
+              "type": {
+                "kind": "SCALAR",
+                "name": "URL",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "userErrors",
+              "description": "List of errors that occurred executing the mutation.",
+              "args": [
+
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "UserError",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [
+
+          ],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
           "kind": "INPUT_OBJECT",
           "name": "CustomerInput",
           "description": "Provides the fields and values to use when creating or updating a customer.",
@@ -16323,6 +16376,24 @@
           "description": "Links a location group and zone with the associated method definitions in a delivery profile.",
           "fields": [
             {
+              "name": "methodDefinitionCounts",
+              "description": "The number of method definitions in this zone.",
+              "args": [
+
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "DeliveryMethodDefinitionCounts",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "methodDefinitions",
               "description": "The method definitions associated to a zone and location group in a delivery profile.",
               "args": [
@@ -16332,6 +16403,16 @@
                   "type": {
                     "kind": "SCALAR",
                     "name": "Boolean",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "type",
+                  "description": "Return only merchant or participant method definitions.",
+                  "type": {
+                    "kind": "ENUM",
+                    "name": "DeliveryMethodDefinitionType",
                     "ofType": null
                   },
                   "defaultValue": null
@@ -16814,6 +16895,55 @@
         },
         {
           "kind": "OBJECT",
+          "name": "DeliveryMethodDefinitionCounts",
+          "description": "Then number of method definitions in a zone, separated into merchant-owned and participant definitions.",
+          "fields": [
+            {
+              "name": "participantDefinitionsCount",
+              "description": "The number of participant method definitions in the current zone.",
+              "args": [
+
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "rateDefinitionsCount",
+              "description": "The number of merchant-defined method definitions in the current zone.",
+              "args": [
+
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [
+
+          ],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
           "name": "DeliveryMethodDefinitionEdge",
           "description": null,
           "fields": [
@@ -16984,6 +17114,29 @@
           ],
           "interfaces": null,
           "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "DeliveryMethodDefinitionType",
+          "description": "The different types of method definitions to filter by.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "MERCHANT",
+              "description": "Static mechant-defined rates.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "PARTICIPANT",
+              "description": "Dynamic participant rates.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
           "possibleTypes": null
         },
         {
@@ -27925,6 +28078,113 @@
         },
         {
           "kind": "OBJECT",
+          "name": "Duty",
+          "description": "Represents a single duty for a line item.",
+          "fields": [
+            {
+              "name": "countryCodeOfOrigin",
+              "description": "The ISO code of the country of origin of the line item.",
+              "args": [
+
+              ],
+              "type": {
+                "kind": "ENUM",
+                "name": "CountryCode",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "harmonizedSystemCode",
+              "description": "The harmonized system code of the line item.",
+              "args": [
+
+              ],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "id",
+              "description": "Globally unique identifier.",
+              "args": [
+
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "price",
+              "description": "The price of the duty for the line item.",
+              "args": [
+
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "MoneyBag",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "taxLines",
+              "description": "The TaxLine objects connected to the duty for the line item.",
+              "args": [
+
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "TaxLine",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [
+            {
+              "kind": "INTERFACE",
+              "name": "Node",
+              "ofType": null
+            }
+          ],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
           "name": "EditableProperty",
           "description": "The attribute editable information.",
           "fields": [
@@ -36185,6 +36445,32 @@
               "deprecationReason": null
             },
             {
+              "name": "duties",
+              "description": "The duties associated with the line item.",
+              "args": [
+
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "Duty",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "fulfillableQuantity",
               "description": "The total number of units to fulfill.",
               "args": [
@@ -41716,6 +42002,54 @@
               "description": "Media could not be processed because the signed url was invalid.",
               "isDeprecated": false,
               "deprecationReason": null
+            },
+            {
+              "name": "IMAGE_DOWNLOAD_FAILURE",
+              "description": "Media could not be processed because the image could not be downloaded.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "IMAGE_PROCESSING_FAILURE",
+              "description": "Media could not be processed because the image could not be processed.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "MEDIA_TIMEOUT_ERROR",
+              "description": "Media timed out because it is currently being modified by another operation.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "EXTERNAL_VIDEO_NOT_FOUND",
+              "description": "Media could not be created because the external video could not be found.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "EXTERNAL_VIDEO_UNLISTED",
+              "description": "Media could not be created because the external video is not listed or is private.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "EXTERNAL_VIDEO_INVALID_ASPECT_RATIO",
+              "description": "Media could not be created because the external video has an invalid aspect ratio.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "VIDEO_VALIDATION_ERROR",
+              "description": "Video failed validation.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "MODEL3D_VALIDATION_ERROR",
+              "description": "Model failed validation.",
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "possibleTypes": null
@@ -42127,6 +42461,24 @@
           "description": "Metafields represent custom metadata attached to a resource. Metafields can be sorted into namespaces and are\ncomposed of keys, values, and value types.\n",
           "fields": [
             {
+              "name": "createdAt",
+              "description": "The date and time when the metafield was created.",
+              "args": [
+
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "DateTime",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "description",
               "description": "The description of a metafield.",
               "args": [
@@ -42224,6 +42576,24 @@
                 "ofType": {
                   "kind": "ENUM",
                   "name": "MetafieldOwnerType",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "updatedAt",
+              "description": "The date and time when the metafield was updated.",
+              "args": [
+
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "DateTime",
                   "ofType": null
                 }
               },
@@ -43101,6 +43471,24 @@
                 "kind": "SCALAR",
                 "name": "String",
                 "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "filename",
+              "description": "The filename of the 3d model.",
+              "args": [
+
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -44292,6 +44680,33 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "CustomerDeletePayload",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "customerGenerateAccountActivationUrl",
+              "description": "Generates a new account activation URL.",
+              "args": [
+                {
+                  "name": "customerId",
+                  "description": "The ID of the customer that the URL is generated for.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "ID",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "CustomerGenerateAccountActivationUrlPayload",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -47310,122 +47725,6 @@
               "deprecationReason": null
             },
             {
-              "name": "productBulkAddPriceReductions",
-              "description": "Adds the price reduction to products in bulk.",
-              "args": [
-                {
-                  "name": "productIds",
-                  "description": "A list of IDs for the products to have their price reduction added.",
-                  "type": {
-                    "kind": "LIST",
-                    "name": null,
-                    "ofType": {
-                      "kind": "NON_NULL",
-                      "name": null,
-                      "ofType": {
-                        "kind": "SCALAR",
-                        "name": "ID",
-                        "ofType": null
-                      }
-                    }
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "savedSearchId",
-                  "description": "The ID of a saved search for filtering the products included in the mutation.",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "ID",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "search",
-                  "description": "A search query for filtering the products included in the mutation.Use \"\" to update all products asynchronously.",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "priceReduction",
-                  "description": "The price reduction to be applied to the prices.",
-                  "type": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "INPUT_OBJECT",
-                      "name": "PriceReductionInput",
-                      "ofType": null
-                    }
-                  },
-                  "defaultValue": null
-                }
-              ],
-              "type": {
-                "kind": "OBJECT",
-                "name": "ProductBulkAddPriceReductionsPayload",
-                "ofType": null
-              },
-              "isDeprecated": true,
-              "deprecationReason": "Removed in 2020-04."
-            },
-            {
-              "name": "productBulkRemovePriceReductions",
-              "description": "Removes the price reduction of products in bulk.",
-              "args": [
-                {
-                  "name": "productIds",
-                  "description": "A list of IDs for the products to have their price reduction removed.",
-                  "type": {
-                    "kind": "LIST",
-                    "name": null,
-                    "ofType": {
-                      "kind": "NON_NULL",
-                      "name": null,
-                      "ofType": {
-                        "kind": "SCALAR",
-                        "name": "ID",
-                        "ofType": null
-                      }
-                    }
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "savedSearchId",
-                  "description": "The ID of a saved search for filtering the products included in the mutation.",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "ID",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                },
-                {
-                  "name": "search",
-                  "description": "A search query for filtering the products included in the mutation.Use \"\" to update all products asynchronously.",
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                }
-              ],
-              "type": {
-                "kind": "OBJECT",
-                "name": "ProductBulkRemovePriceReductionsPayload",
-                "ofType": null
-              },
-              "isDeprecated": true,
-              "deprecationReason": "Removed in 2020-04."
-            },
-            {
               "name": "productCreate",
               "description": "Creates a product.",
               "args": [
@@ -49408,6 +49707,11 @@
             },
             {
               "kind": "OBJECT",
+              "name": "Duty",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
               "name": "ExternalVideo",
               "ofType": null
             },
@@ -50235,6 +50539,20 @@
                   "name": "CurrencyCode",
                   "ofType": null
                 }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "currentTotalDutiesSet",
+              "description": "Total amount of duties for the order. If duties are not applicable, then this value is `null`.",
+              "args": [
+
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "MoneyBag",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -51283,6 +51601,20 @@
               "deprecationReason": null
             },
             {
+              "name": "originalTotalDutiesSet",
+              "description": "Total amount of duties prior to any applied edits for the order. If duties are not applicable, then this value is `null`.",
+              "args": [
+
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "MoneyBag",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "originalTotalPriceSet",
               "description": "Total price of the order prior to any applied edits in shop and presentment currencies.",
               "args": [
@@ -51852,6 +52184,24 @@
                       "ofType": {
                         "kind": "INPUT_OBJECT",
                         "name": "RefundLineItemInput",
+                        "ofType": null
+                      }
+                    }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "refundDuties",
+                  "description": "The duties from the order to include in the refund.",
+                  "type": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "NON_NULL",
+                      "name": null,
+                      "ofType": {
+                        "kind": "INPUT_OBJECT",
+                        "name": "RefundDutyInput",
                         "ofType": null
                       }
                     }
@@ -55156,31 +55506,6 @@
           "interfaces": [
 
           ],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "INPUT_OBJECT",
-          "name": "PriceReductionInput",
-          "description": "Specifies the percentage value of a price reduction.",
-          "fields": null,
-          "inputFields": [
-            {
-              "name": "percentage",
-              "description": "Percentage value of a price reduction.",
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              },
-              "defaultValue": null
-            }
-          ],
-          "interfaces": null,
           "enumValues": null,
           "possibleTypes": null
         },
@@ -59489,6 +59814,24 @@
           "description": "Private metafields represent custom metadata that is attached to a resource.\nPrivate metafields are private to the application that creates them on a shop's resources.\n",
           "fields": [
             {
+              "name": "createdAt",
+              "description": "The date and time when the private metafield was created.",
+              "args": [
+
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "DateTime",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "id",
               "description": "The id of the private metafield.",
               "args": [
@@ -59536,6 +59879,24 @@
                 "ofType": {
                   "kind": "SCALAR",
                   "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "updatedAt",
+              "description": "The date and time when the private metafield was updated.",
+              "args": [
+
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "DateTime",
                   "ofType": null
                 }
               },
@@ -61906,156 +62267,6 @@
                 "kind": "OBJECT",
                 "name": "Product",
                 "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "userErrors",
-              "description": "List of errors that occurred executing the mutation.",
-              "args": [
-
-              ],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "OBJECT",
-                      "name": "UserError",
-                      "ofType": null
-                    }
-                  }
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [
-
-          ],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "ProductBulkAddPriceReductionsPayload",
-          "description": "Return type for `productBulkAddPriceReductions` mutation.",
-          "fields": [
-            {
-              "name": "job",
-              "description": "The asynchronous job that adds the price reduction for the specified products.",
-              "args": [
-
-              ],
-              "type": {
-                "kind": "OBJECT",
-                "name": "Job",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "skippedVariantIds",
-              "description": "A list of variant IDs that were skipped and not updated.",
-              "args": [
-
-              ],
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "ID",
-                    "ofType": null
-                  }
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "userErrors",
-              "description": "List of errors that occurred executing the mutation.",
-              "args": [
-
-              ],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "OBJECT",
-                      "name": "UserError",
-                      "ofType": null
-                    }
-                  }
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [
-
-          ],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "ProductBulkRemovePriceReductionsPayload",
-          "description": "Return type for `productBulkRemovePriceReductions` mutation.",
-          "fields": [
-            {
-              "name": "job",
-              "description": "The asynchronous job that removes the price reduction for the specified products.",
-              "args": [
-
-              ],
-              "type": {
-                "kind": "OBJECT",
-                "name": "Job",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "skippedVariantIds",
-              "description": "A list of variant IDs that were skipped and not updated.",
-              "args": [
-
-              ],
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "ID",
-                    "ofType": null
-                  }
-                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -69447,6 +69658,33 @@
               "deprecationReason": null
             },
             {
+              "name": "fulfillmentService",
+              "description": "Returns a FulfillmentService resource by ID.",
+              "args": [
+                {
+                  "name": "id",
+                  "description": "The ID of the FulfillmentService to return.",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "ID",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "FulfillmentService",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "inventoryItem",
               "description": "Returns an InventoryItem resource by ID.",
               "args": [
@@ -71760,6 +71998,28 @@
               "deprecationReason": null
             },
             {
+              "name": "duties",
+              "description": "List of the order's refunded duties.",
+              "args": [
+
+              ],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "RefundDuty",
+                    "ofType": null
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "id",
               "description": "Globally unique identifier.",
               "args": [
@@ -72100,6 +72360,109 @@
           "possibleTypes": null
         },
         {
+          "kind": "OBJECT",
+          "name": "RefundDuty",
+          "description": "Represents a refunded duty.",
+          "fields": [
+            {
+              "name": "amountSet",
+              "description": "Returns the amount of a refunded duty in shop and presentment currencies.",
+              "args": [
+
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "MoneyBag",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "originalDuty",
+              "description": "Returns a Duty resource. This represents the Duty in the non-refund context.",
+              "args": [
+
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Duty",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [
+
+          ],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "RefundDutyInput",
+          "description": "Specifies the fields required to return duties on a refund.",
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "dutyId",
+              "description": "The ID of the duty in the refund.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "refundType",
+              "description": "The type of refund for this duty.",
+              "type": {
+                "kind": "ENUM",
+                "name": "RefundDutyRefundType",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "ENUM",
+          "name": "RefundDutyRefundType",
+          "description": "The type of refund to perform for a particular refund duty.",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "PROPORTIONAL",
+              "description": "The duty is proportionally refunded based on the quantity of the refunded line item.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "FULL",
+              "description": "The duty is fully refunded.",
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
           "kind": "INPUT_OBJECT",
           "name": "RefundInput",
           "description": "Specifies the fields to create a refund.",
@@ -72171,6 +72534,24 @@
                   "ofType": {
                     "kind": "INPUT_OBJECT",
                     "name": "RefundLineItemInput",
+                    "ofType": null
+                  }
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "refundDuties",
+              "description": "A list of duties to refund.",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "RefundDutyInput",
                     "ofType": null
                   }
                 }
@@ -84361,6 +84742,32 @@
               "deprecationReason": null
             },
             {
+              "name": "refundDuties",
+              "description": "An array of duties that will be refunded to the customer.",
+              "args": [
+
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "RefundDuty",
+                      "ofType": null
+                    }
+                  }
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "refundLineItems",
               "description": "An array of line items that will be returned to the customer.",
               "args": [
@@ -84469,6 +84876,24 @@
             {
               "name": "totalCartDiscountAmountSet",
               "description": "The total cart discount amount that was applied to all line items in this refund.",
+              "args": [
+
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "MoneyBag",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "totalDutiesSet",
+              "description": "The sum of all the duties being refunded from the order (must be positive) in shop and presentment currencies.",
               "args": [
 
               ],
@@ -86344,6 +86769,24 @@
                 "kind": "SCALAR",
                 "name": "String",
                 "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "filename",
+              "description": "The filename of the video.",
+              "args": [
+
+              ],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null

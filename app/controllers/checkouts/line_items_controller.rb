@@ -1,8 +1,7 @@
 class Checkouts::LineItemsController < ApplicationController
   def create
     # p @checkout.line_items << ShopifyAPI::LineItem.new(line_item_params)
-    q = ShopifyAPI::Checkout.new(line_items: [ShopifyAPI::LineItem.new(line_item_params)])
-    binding.pry
+    # q = ShopifyAPI::Checkout.new(line_items: [ShopifyAPI::LineItem.new(line_item_params)])
   end
 
   private
