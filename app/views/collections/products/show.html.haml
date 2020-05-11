@@ -4,17 +4,12 @@
     =@product.body_html.html_safe
     %span{ id: 'price' }="$ #{@product.variants.first.price}"
     %br
-    %form{ id: 'cart-form' }
-      =hidden_field(:item, :price, value: @product.variants.first.price)
-      =hidden_field(:item, :image, value: @product.image.src)
-      =hidden_field(:item, :title, value: @product.title)
-      %label='Size'
-      %select{ required: true, name: 'item[id]', id: 'size' }
-        - @sizes.map do |size|
-          %option{ value: size[:value] }=size[:label]
-      %label='Quantity'
-      %br
-      %input{ type: 'number', id: 'quantity', name: 'item[quantity]', required: true }
-      %button{ id: 'add-to-cart' }='ADD TO CART'
+    = form_tag checkouts_line_items_path, method: :post do
+      = hidden_field_tag(:authenticity_token)
+      = label_tag(:variant_id, 'Size')
+      = select(:line_item, :variant_id, options_for_select(@sizes.map{|s| [s[:label], s[:value]]}), required: true, id: 'size')
+      = label_tag(:quantity, 'Quantity')
+      = number_field(:line_item, :quantity, in: 1...20, required: true)
+      = submit_tag('ADD TO CART', id: 'add-to-cart')
   %div{ id: 'product-container-right' }
     %img{ src: @product.image.src }

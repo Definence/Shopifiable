@@ -4,13 +4,12 @@
 
 #product-container {
   display: flex;
-  padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
 
   #product-container-left {
-    margin: 2rem 4rem;
     max-width: 40%;
+    margin: 0 2rem;
 
     #title {
       font-size: 30px;
@@ -23,7 +22,7 @@
       font-size: 700%;
       font-weight: 300;
       font-style: normal;
-      font-family: serif;;
+      font-family: serif;
     }
 
     #quantity {
@@ -31,8 +30,8 @@
     }
 
     #add-to-cart {
+      margin-top: 1rem;
       max-width: 36%;
-      width: 100%;
       float: right;
     }
   }

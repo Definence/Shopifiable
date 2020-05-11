@@ -1,4 +1,33 @@
 header {
+  h1 {
+    text-align: center;
+  }
+
+  #promo-bar {
+    background-color: black;
+    color: #ffffff;
+    min-height: 33px;
+    font-weight: 300;
+    width: 100%;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    padding: 7px 10px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+
+    i {
+      font-size: 14px;
+      font-weight: 300;
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%)
+    }
+  }
+
   nav {
     $nav-height: 45px;
 
@@ -65,17 +94,18 @@ header {
             max-height: 0;
             transition: max-height 0.3s ease-in-out;
             overflow: hidden;
-            background: rgb(233, 233, 233);
+            background-color: rgb(255, 255, 255);
             position: absolute;
             padding: 0;
-            width: 100%;
+            min-width: 100%;
+            z-index: 1;
 
             li {
               color: black;
               padding: 0.5rem 0.8rem;
               text-align: left;
 
-              .tag-item {
+              .type-item {
                 cursor: pointer;
                 font-size: 0.8rem;
               }

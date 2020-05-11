@@ -30,6 +30,14 @@ body {
   font-size: 12px;
   letter-spacing: 1.7px;
 
+  h1 {
+    margin: 0.4em 0;
+  }
+
+  img {
+    cursor: pointer;
+  }
+
   table {
     border-spacing: 0;
     width: 100%;
@@ -45,19 +53,6 @@ body {
   a, a:link, a:visited {
     text-decoration: none;
     color: black;
-  }
-
-  button {
-    background-color: black;
-    outline: none;
-    border: 0;
-    color: white;
-    height: 45px;
-    text-transform: uppercase;
-    font-weight: 600;
-    border-radius: $border-radius;
-    padding: 0 20px;
-    cursor: pointer;
   }
 
   button:disabled {
@@ -80,6 +75,20 @@ body {
     padding: 0 10px;
   }
 
+  button, input[type=submit] {
+    width: min-content;
+    background-color: black;
+    outline: none;
+    border: 0;
+    color: white;
+    height: 45px;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-radius: $border-radius;
+    padding: 0 20px;
+    cursor: pointer;
+  }
+
   select {
     background: url('chevron-gray.svg') no-repeat right 10px center;
     background-size: 14px;
@@ -93,42 +102,6 @@ body {
       white-space: pre;
       min-height: 1.2em;
       padding: 0px 2px 1px;
-    }
-  }
-
-  header {
-    h1 {
-      text-align: center;
-    }
-
-    .logo {
-      display: inline-block;
-      vertical-align: middle;
-    }
-
-    #promo-bar {
-      background-color: black;
-      color: #ffffff;
-      min-height: 33px;
-      font-weight: 300;
-      width: 100%;
-      -webkit-transition: 0.3s;
-      transition: 0.3s;
-      padding: 7px 10px;
-      position: relative;
-      overflow: hidden;
-      text-align: center;
-      -webkit-box-sizing: border-box;
-      box-sizing: border-box;
-
-      i {
-        font-size: 14px;
-        font-weight: 300;
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        transform: translateY(-50%)
-      }
     }
   }
 }

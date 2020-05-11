@@ -4,8 +4,11 @@
 
 .product-grid {
   margin: 15px;
+  display: flex;
+  flex-wrap: wrap;
 
   .product-block {
+    box-sizing: border-box;
     width: calc(100% / 4);
     padding: 15px;
 
@@ -26,8 +29,22 @@
     }
 
     .image-container {
+      position: relative;
+
       img {
         width: 100%;
+        transition: opacity .7s;
+      }
+
+      .primary-img:hover {
+        opacity: 0;
+      }
+
+      .secondary-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
       }
     }
   }

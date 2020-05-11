@@ -49,3 +49,8 @@ shop = ShopifyAPI::Shop.current
 ```ruby
 RestClient.log = 'stdout'
 ```
+
+#### GraphQl dump
+```
+rake shopify_api:graphql:dump ACCESS_TOKEN=shpat_****** SHOP_DOMAIN=shop API_VERSION=2020-01
+```

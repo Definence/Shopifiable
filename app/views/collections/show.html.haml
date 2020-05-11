@@ -3,7 +3,8 @@
     %article{ class: 'product-block' }
       %a{ href: collection_product_path(collection_type: @smart_collection.handle, guid: product.id) }
         %div{ class: 'image-container' }
-          %img{ src: product.images.last.src }
+          %img{ class: 'primary-img',src: product.images.first.src }
+          %img{ class: 'secondary-img', src: product.images.second.src }
       %div{ class: 'details' }
         %a{ href: collection_product_path(collection_type: @smart_collection.handle, guid: product.id) }
           %div{ class: 'title' }=product.title

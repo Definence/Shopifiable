@@ -7,6 +7,9 @@ Rails.application.routes.draw do
     resources :products, only: :show, param: :guid, controller: 'collections/products'
   end
 
+  namespace :checkouts do
+    resources :line_items, only: :create
+  end
+
   resource :cart, only: :show
-  resource :checkout, only: :show
 end
