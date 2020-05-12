@@ -1,5 +1,8 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   mount ShopifyApp::Engine, at: '/'
+  mount Sidekiq::Web => '/sidekiq'
 
   root to: 'home#index'
 

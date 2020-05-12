@@ -6,7 +6,8 @@ ShopifyApp.configure do |config|
 
   # Consult this page for more scope options:
   # https://help.shopify.com/en/api/getting-started/authentication/oauth/scopes
-  config.scope = "write_products, write_product_listings, write_customers, write_orders, write_inventory, write_shipping, write_checkouts, write_price_rules"
+  config.scope = "write_products, write_product_listings, write_customers, write_orders, write_inventory, write_shipping, write_checkouts, write_price_rules,
+  unauthenticated_read_product_listings, unauthenticated_read_product_tags, unauthenticated_write_checkouts, unauthenticated_write_customers, unauthenticated_read_customer_tags, unauthenticated_read_content"
 
   config.embedded_app = false
   config.after_authenticate_job = false
