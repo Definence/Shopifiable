@@ -2,7 +2,7 @@
 class Shop < ActiveRecord::Base
   include ShopifyApp::ShopSessionStorage
 
-  after_create :set_shopify_storefront_token!, if: proc { self.shopify_storefront_token.blank? }
+  after_create :set_shopify_storefront_token, if: proc { self.shopify_storefront_token.blank? }
 
   def api_version
     ShopifyApp.configuration.api_version
