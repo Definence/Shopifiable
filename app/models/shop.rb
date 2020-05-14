@@ -8,6 +8,12 @@ class Shop < ActiveRecord::Base
     ShopifyApp.configuration.api_version
   end
 
+  def activate_session
+    session = ShopifyAPI::Session.new(domain: shopify_domain, token: shopify_token, api_version: api_version)
+    ShopifyAPI::Base.activate_session(session)
+    ShopifyAPI::Shop.current
+  end
+
   private
 
   def set_shopify_storefront_token

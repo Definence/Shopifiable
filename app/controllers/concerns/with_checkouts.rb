@@ -9,17 +9,13 @@ module WithCheckouts
     else
       @checkout ||= create_checkout
     end
-
-    # p '@@@@' # TDO remove
-    # pp @checkout
-    # p '@@@@'
   rescue
     @checkout ||= create_checkout
   end
 
   def create_checkout
     checkout = ShopifyAPI::Checkout.create
-    cookies[:checkout_id] = checkout.token
+    cookies[:checkout_id] = checkout.id
     checkout
   end
 end

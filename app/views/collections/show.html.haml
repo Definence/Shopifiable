@@ -1,12 +1,18 @@
 %div{ class: 'product-grid' }
   - @products.map do |product|
+    - id = product.node.id
+    - title = product.node.title
+    - min_price = product.node.price_range.min_variant_price
+    - currency_code = product.node.price_range.min_variant_price.currency_code
+    - images = product.node.images.edges
+
     %article{ class: 'product-block' }
-      %a{ href: collection_product_path(collection_type: @smart_collection.handle, guid: product.id) }
+      %a{ href: collection_product_path(collection_type: @collection.handle, guid: id) }
         %div{ class: 'image-container' }
-          %img{ class: 'primary-img',src: product.images.first.src }
-          %img{ class: 'secondary-img', src: product.images.second.src }
+          %img{ class: 'primary-img',src: images.first.node.src }
+          %img{ class: 'secondary-img', src: images.second.node.src }
       %div{ class: 'details' }
-        %a{ href: collection_product_path(collection_type: @smart_collection.handle, guid: product.id) }
-          %div{ class: 'title' }=product.title
-        %a{ href: collection_product_path(collection_type: @smart_collection.handle, guid: product.id) }
-          %div{ class: 'price' }="$ #{product.variants.map(&:price).sample}"
+        %a{ href: collection_product_path(collection_type: @collection.handle, guid: id) }
+          %div{ class: 'title' }=title
+        %a{ href: collection_product_path(collection_type: @collection.handle, guid: id) }
+          %div{ class: 'price' }="#{min_price.currency_code} #{min_price.amount}"

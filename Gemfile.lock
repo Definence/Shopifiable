@@ -1,3 +1,13 @@
+GIT
+  remote: https://github.com/ashkan18/graphlient.git
+  revision: 2a9412b21a9c2a195aa608793bfa2ee94e77ca67
+  branch: master
+  specs:
+    graphlient (0.4.0)
+      faraday (>= 1.0)
+      faraday_middleware
+      graphql-client
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -75,8 +85,6 @@ GEM
     concurrent-ruby (1.1.6)
     connection_pool (2.2.2)
     crass (1.0.6)
-    domain_name (0.5.20190701)
-      unf (>= 0.0.5, < 1.0.0)
     erubi (1.9.0)
     erubis (2.7.0)
     faraday (1.0.1)
@@ -88,10 +96,6 @@ GEM
       railties (>= 3.2, < 6.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    graphlient (0.3.7)
-      faraday
-      faraday_middleware
-      graphql-client
     graphql (1.10.9)
     graphql-client (0.16.0)
       activesupport (>= 3.0)
@@ -111,12 +115,8 @@ GEM
       haml (>= 4.0, < 6)
       nokogiri (>= 1.6.0)
       ruby_parser (~> 3.5)
-    http-accept (1.7.0)
-    http-cookie (1.0.3)
-      domain_name (~> 0.5)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
-    jaro_winkler (1.5.4)
     jbuilder (2.10.0)
       activesupport (>= 5.0.0)
     jwt (2.2.1)
@@ -131,9 +131,6 @@ GEM
     marcel (0.3.3)
       mimemagic (~> 0.3.2)
     method_source (1.0.0)
-    mime-types (3.3.1)
-      mime-types-data (~> 3.2015)
-    mime-types-data (3.2020.0425)
     mimemagic (0.3.5)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
@@ -142,7 +139,6 @@ GEM
     multi_json (1.14.1)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
-    netrc (0.11.0)
     nio4r (2.5.2)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
@@ -211,15 +207,11 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    redis (4.1.3)
-    rest-client (2.1.0)
-      http-accept (>= 1.7.0, < 2.0)
-      http-cookie (>= 1.0.2, < 2.0)
-      mime-types (>= 1.16, < 4.0)
-      netrc (~> 0.8)
+    redirect_safely (1.0.0)
+      activemodel
+    redis (4.1.4)
     rexml (3.2.4)
-    rubocop (0.82.0)
-      jaro_winkler (~> 1.5.1)
+    rubocop (0.83.0)
       parallel (~> 1.10)
       parser (>= 2.7.0.1)
       rainbow (>= 2.2.2, < 4.0)
@@ -240,17 +232,18 @@ GEM
       sprockets-rails
       tilt
     sexp_processor (4.14.1)
-    shopify_api (9.0.4)
+    shopify_api (9.1.0)
       activeresource (>= 4.1.0, < 6.0.0)
       graphql-client
       rack
-    shopify_app (13.1.1)
+    shopify_app (13.2.0)
       browser_sniffer (~> 1.2.2)
       jwt (~> 2.2.1)
       omniauth-shopify-oauth2 (~> 2.2.2)
       rails (> 5.2.1)
-      shopify_api (~> 9.0.2)
-    sidekiq (6.0.5)
+      redirect_safely (~> 1.0)
+      shopify_api (~> 9.1.0)
+    sidekiq (6.0.7)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       rack-protection (>= 2.0.0)
@@ -275,9 +268,6 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
-    unf (0.1.4)
-      unf_ext
-    unf_ext (0.0.7.7)
     unicode-display_width (1.7.0)
     web-console (4.0.2)
       actionview (>= 6.0.0)
@@ -300,7 +290,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   font-awesome-rails
-  graphlient
+  graphlient!
   haml-rails
   jbuilder (~> 2.7)
   listen
@@ -310,7 +300,6 @@ DEPENDENCIES
   puma (~> 4.1)
   rails (~> 6.0.2, >= 6.0.2.2)
   redis
-  rest-client
   rubocop
   sass-rails (>= 6)
   shopify_app
