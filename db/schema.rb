@@ -10,10 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_12_103213) do
+ActiveRecord::Schema.define(version: 2020_05_14_134439) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "shop_collection_rules", force: :cascade do |t|
+    t.string "column", null: false
+    t.string "relation", null: false
+    t.string "condition", null: false
+    t.bigint "collection_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["collection_id"], name: "index_shop_collection_rules_on_collection_id"
+  end
+
+  create_table "shop_collections", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "handle", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "shops", force: :cascade do |t|
     t.string "shopify_domain", null: false

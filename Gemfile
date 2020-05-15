@@ -10,6 +10,8 @@ gem 'shopify_app'
 gem 'graphlient', git: 'https://github.com/ashkan18/graphlient.git', branch: 'master'
 gem 'sidekiq'
 gem 'redis'
+gem 'activerecord-import'
+gem 'sidekiq-cron', '~> 1.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.2'

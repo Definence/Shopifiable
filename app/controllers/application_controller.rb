@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
-  include ShopifyApp::Authenticated
   include WithCollections
-  include WithCheckouts
+  # include WithCheckouts
 
-  before_action :ensure_checkout, :define_collections
+  # before_action :ensure_checkout
+  before_action :define_collections
 
   def current_remote_shop
     @remote_shop ||= ShopifyAPI::Shop.current

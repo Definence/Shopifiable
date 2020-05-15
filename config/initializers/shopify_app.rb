@@ -20,4 +20,3 @@ end
 
 # shop_url = "https://#{Rails.application.credentials.shopify_api_key}:#{Rails.application.credentials.shopify_password}@#{Rails.application.credentials.shop_name}.myshopify.com"
 # ShopifyAPI::Base.site = shop_url
-# ShopifyAPI::Base.api_version = "2020-04"

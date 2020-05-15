@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class Shop < ActiveRecord::Base
   include ShopifyApp::ShopSessionStorage
 
@@ -8,10 +9,18 @@ class Shop < ActiveRecord::Base
     ShopifyApp.configuration.api_version
   end
 
-  def activate_session
+  def activate_session!
     session = ShopifyAPI::Session.new(domain: shopify_domain, token: shopify_token, api_version: api_version)
     ShopifyAPI::Base.activate_session(session)
     ShopifyAPI::Shop.current
+  end
+
+  def downsync
+    Shopify::DownsyncJob.perform_later(:collection, id: id)
+  end
+
+  def downsync!
+    Shopify::Downsync::CollectionsService.new(self).call
   end
 
   private

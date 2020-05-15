@@ -37,14 +37,6 @@ git push heroku master
 heroku open
 ```
 
-#### To activate shop session
-```ruby
-session = ShopifyAPI::Session.new(domain: 'shopifiable-app.myshopify.com', token: Shop.first.shopify_token, api_version: "2020-04")
-ShopifyAPI::Base.activate_session(session)
-include ShopifyAPI
-shop = ShopifyAPI::Shop.current
-```
-
 #### To debug RestClient requests
 ```ruby
 RestClient.log = 'stdout'

@@ -1,4 +1,4 @@
-module WithCheckouts
+module WithCheckouts # TODO deprecate
   include ActiveSupport::Concern
 
   private
