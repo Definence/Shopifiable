@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_14_134439) do
+ActiveRecord::Schema.define(version: 2020_05_15_150236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "images", force: :cascade do |t|
+    t.string "ext_url", null: false
+    t.string "imageable_type", null: false
+    t.bigint "imageable_id", null: false
+    t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id"
+  end
 
   create_table "shop_collection_rules", force: :cascade do |t|
     t.string "column", null: false
@@ -30,6 +37,31 @@ ActiveRecord::Schema.define(version: 2020_05_14_134439) do
     t.string "handle", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["handle"], name: "index_shop_collections_on_handle", unique: true
+  end
+
+  create_table "shop_collections_products", force: :cascade do |t|
+    t.bigint "product_id"
+    t.bigint "collection_id"
+    t.index ["collection_id"], name: "index_shop_collections_products_on_collection_id"
+    t.index ["product_id"], name: "index_shop_collections_products_on_product_id"
+  end
+
+  create_table "shop_products", force: :cascade do |t|
+    t.bigint "shop_id", null: false
+    t.string "guid", null: false
+    t.string "title", null: false
+    t.string "currency", null: false
+    t.decimal "min_price", precision: 8, scale: 2, null: false
+    t.decimal "max_price", precision: 8, scale: 2, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "handle", null: false
+    t.string "product_type"
+    t.text "description_html"
+    t.text "tags", array: true
+    t.index ["guid"], name: "index_shop_products_on_guid", unique: true
+    t.index ["shop_id"], name: "index_shop_products_on_shop_id"
   end
 
   create_table "shops", force: :cascade do |t|
@@ -39,15 +71,6 @@ ActiveRecord::Schema.define(version: 2020_05_14_134439) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "shopify_storefront_token"
     t.index ["shopify_domain"], name: "index_shops_on_shopify_domain", unique: true
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.bigint "shopify_user_id", null: false
-    t.string "shopify_domain", null: false
-    t.string "shopify_token", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["shopify_user_id"], name: "index_users_on_shopify_user_id", unique: true
   end
 
 end

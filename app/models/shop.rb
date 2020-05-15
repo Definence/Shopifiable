@@ -3,6 +3,8 @@
 class Shop < ActiveRecord::Base
   include ShopifyApp::ShopSessionStorage
 
+  has_many :products, dependent: :destroy
+
   after_create :set_shopify_storefront_token, if: proc { self.shopify_storefront_token.blank? }
 
   def api_version

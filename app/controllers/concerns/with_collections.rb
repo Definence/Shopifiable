@@ -4,17 +4,17 @@ module WithCollections
   private
 
   def define_collections
-    @collections = [] # TODO define collections
-    # @collections ||= ShopifyAPI::SmartCollection.find(:all).map { |c|
-    #   is_primary = c.respond_to? :image
-    #   next unless is_primary
+    @collections = Shop::Collection.all.map { |c|
+      next unless c.primary?
 
-    #   types = c.rules.map do |c|
-    #     is_product_type = c.attributes['column'] === 'type' && c.attributes['relation'] === 'equals'
-    #     c.attributes['condition'] if is_product_type
-    #   end
+      { title: c.title, handle: c.handle, types: sub_collections(c) }
+    }.compact
+  end
 
-    #   { title: c.title, handle: c.handle, types: types.uniq.reject { |i| i.blank? } }
-    # }.reject { |i| i.blank? }
+  def sub_collections collection
+    collection.rules.map { |r|
+      is_product_type = r.column === 'type' && r.relation === 'equals'
+      r.condition if is_product_type
+    }.uniq.compact
   end
 end
