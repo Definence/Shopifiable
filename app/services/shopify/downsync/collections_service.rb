@@ -1,7 +1,9 @@
 class Shopify::Downsync::CollectionsService
+  include Shopify::ShopHelper
+
   def initialize(local_shop)
-    @local_shop = local_shop
-    @remote_shop = local_shop.activate_session!
+    @local_shop = define_local_shop(local_shop)
+    @local_shop.activate_session!
   end
 
   def call

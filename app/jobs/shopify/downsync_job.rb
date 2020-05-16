@@ -5,8 +5,11 @@ class Shopify::DownsyncJob < ApplicationJob
 
   private
 
-  def collection args
-    shop = Shop.find(args[:id])
-    shop.downsync!
+  def collections args
+    Shop::Collection.downsync_all! args[:local_shop]
+  end
+
+  def products args
+    Shop::Product.downsync_all! args[:local_shop]
   end
 end

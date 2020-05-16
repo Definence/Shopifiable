@@ -6,7 +6,35 @@ module Shopify::Storefront::ProductsHelper
           edges {
             node {
               id
+              descriptionHtml
               handle
+              productType
+              tags
+              title
+              collections(first: 250) {
+                edges {
+                  node {
+                    handle
+                  }
+                }
+              }
+              images(first: 2) {
+                edges {
+                  node {
+                    src
+                  }
+                }
+              }
+              priceRange {
+                minVariantPrice {
+                  amount
+                  currencyCode
+                }
+                maxVariantPrice {
+                  amount
+                  currencyCode
+                }
+              }
             }
           }
         }

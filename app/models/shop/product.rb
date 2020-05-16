@@ -8,7 +8,15 @@ class Shop::Product < ActiveRecord::Base
   has_many :images, class_name: 'Image', as: :imageable, dependent: :destroy
   has_and_belongs_to_many :collections
 
+  def self.downsync_all(local_shop)
+    Shopify::DownsyncJob.perform_later(:products, local_shop: local_shop)
+  end
+
+  def self.downsync_all!(local_shop)
+    Shopify::Downsync::ProductsService.new(local_shop).call
+  end
+
   def self.downsync!(handle, local_shop)
-    Shopify::Downsync::Shop::ProductService.new(handle, local_shop).call # TODO add async version
+    Shopify::Downsync::ProductService.new(handle, local_shop).call
   end
 end

@@ -10,4 +10,12 @@ class Shop::Collection < ActiveRecord::Base
   def primary?
     rules.count > 1
   end
+
+  def self.downsync_all local_shop
+    Shopify::DownsyncJob.perform_later(:collections, local_shop: local_shop)
+  end
+
+  def self.downsync_all! local_shop
+    Shopify::Downsync::CollectionsService.new(local_shop).call
+  end
 end

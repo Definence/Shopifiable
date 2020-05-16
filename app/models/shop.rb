@@ -17,14 +17,6 @@ class Shop < ActiveRecord::Base
     ShopifyAPI::Shop.current
   end
 
-  def downsync
-    Shopify::DownsyncJob.perform_later(:collection, id: id)
-  end
-
-  def downsync!
-    Shopify::Downsync::CollectionsService.new(self).call
-  end
-
   private
 
   def set_shopify_storefront_token

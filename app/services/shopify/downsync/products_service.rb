@@ -1,15 +1,16 @@
 module Shopify
-  class Downsync::Shop::ProductsService
+  class Downsync::ProductsService
     include Storefront::BaseHelper
     include Storefront::ProductsHelper
+    include Shopify::ShopHelper
 
     def initialize(local_shop)
-      @local_shop = local_shop
+      @local_shop = define_local_shop(local_shop)
     end
 
     def call
       remote_products.each do |rp|
-        Shop::Product.downsync!(rp.node.handle, @local_shop)
+        Shop::Product.downsync!(rp.node, @local_shop)
       end
     end
 
