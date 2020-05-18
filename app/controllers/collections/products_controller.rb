@@ -1,7 +1,6 @@
 class Collections::ProductsController < ApplicationController
   def show
-    @product = ShopifyAPI::Product.find(params[:guid])
-    @sizes = @product.variants.map { |v| { value: v.id, label: v.title } }
-    head 404 if @product.blank?
+    @product = Shop::Product.find_by!(guid: params[:guid])
+    @variants = @product.variants.map { |v| { value: v.guid, label: v.title, price: v.price } }
   end
 end

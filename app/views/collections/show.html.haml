@@ -1,18 +1,12 @@
 %div{ class: 'product-grid' }
   - @products.map do |product|
-    - id = product.node.id
-    - title = product.node.title
-    - min_price = product.node.price_range.min_variant_price
-    - currency_code = product.node.price_range.min_variant_price.currency_code
-    - images = product.node.images.edges
-
     %article{ class: 'product-block' }
-      %a{ href: collection_product_path(collection_type: @collection.handle, guid: id) }
+      %a{ href: collection_product_path(collection_type: @collection.handle, guid: product.guid) }
         %div{ class: 'image-container' }
-          %img{ class: 'primary-img',src: images.first.node.src }
-          %img{ class: 'secondary-img', src: images.second.node.src }
+          %img{ class: 'primary-img',src: product.images.first.src }
+          %img{ class: 'secondary-img', src: product.images.second.src }
       %div{ class: 'details' }
-        %a{ href: collection_product_path(collection_type: @collection.handle, guid: id) }
-          %div{ class: 'title' }=title
-        %a{ href: collection_product_path(collection_type: @collection.handle, guid: id) }
-          %div{ class: 'price' }="#{min_price.currency_code} #{min_price.amount}"
+        %a{ href: collection_product_path(collection_type: @collection.handle, guid: product.guid) }
+          %div{ class: 'title' }=product.title
+        %a{ href: collection_product_path(collection_type: @collection.handle, guid: product.guid) }
+          %div{ class: 'price' }="#{product.currency} #{product.price_range.join(' - ')}"

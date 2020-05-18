@@ -3,7 +3,6 @@ module Shopify
     include Storefront::BaseHelper
     include Storefront::ProductsHelper
     include Shopify::ShopHelper
-    include MoneyHelper
 
     def initialize(handle, local_shop)
       @remote_product = define_remote_product(handle)
@@ -12,29 +11,47 @@ module Shopify
       raise 'Different currencies are not supported' if different_currencies
     end
 
-    def call # TODO refactor & add variants
-      assign_collections!
-      assign_images!
+    def call
+      ActiveRecord::Base.transaction do
+        assign_product_attrs!
+        assign_collections!
+        assign_images!
+        assign_variants!
+      end
+
+      local_product
     end
 
     private
 
-    def assign_images
-      Image.transaction do
-        local_product.images.destroy_all
-        images = @remote_product.images.edges.map { |i| local_product.images.new(ext_url: i.node.src) }
-        Image.import! images
-      end
+    def assign_product_attrs!
+      local_product.assign_attributes(local_product_attrs)
+      local_product.save!
     end
 
-    def assign_collections
-      ActiveRecord::Base.transaction do
-        local_product.collections.clear
-        local_collections = @remote_product.collections.edges.map do |rc|
-          Shop::Collection.find_by(handle: rc.node.handle)
-        end
-        local_product.collections << local_collections
+    def assign_images!
+      local_product.images.destroy_all
+      images = @remote_product.images.edges.map { |i| local_product.images.new(ext_url: i.node.src) }
+      Image.import! images
+    end
+
+    def assign_collections!
+      local_product.collections.clear
+      collections = @remote_product.collections.edges.map do |rc|
+        local_collection = Shop::Collection.find_by(handle: rc.node.handle)
+        local_collection.presence || Shop::Collection.downsync!(rc.node.handle, @local_shop)
       end
+
+      local_product.collections << collections
+    end
+
+    def assign_variants!
+      local_product.variants.destroy_all
+      variants = @remote_product.variants.edges.map do |rv|
+        local_product.variants.new(guid: rv.node.id, title: rv.node.title, price: rv.node.price.to_f)
+      end
+
+      Shop::Product::Variant.import! variants
     end
 
     def local_product
@@ -46,10 +63,7 @@ module Shopify
     end
 
     def define_local_product
-      local_product = Shop::Product.find_or_initialize_by(handle: @remote_product.handle)
-      local_product.assign_attributes(local_product_attrs)
-      local_product.save!
-      local_product
+      Shop::Product.find_or_initialize_by(handle: @remote_product.handle)
     end
 
     def define_remote_product handle

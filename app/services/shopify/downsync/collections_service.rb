@@ -1,29 +1,23 @@
-class Shopify::Downsync::CollectionsService
-  include Shopify::ShopHelper
+module Shopify
+  class Downsync::CollectionsService
+    include Storefront::CollectionsHelper
+    include ShopHelper
 
-  def initialize(local_shop)
-    @local_shop = define_local_shop(local_shop)
-    @local_shop.activate_session!
-  end
-
-  def call
-    remote_collections.each do |rc|
-      local_collection = Shop::Collection.create_with(title: rc.title).find_or_create_by!(handle: rc.handle)
-      remote_rules = rc.rules
-      local_rules = local_collection.rules
-
-      rules = remote_rules.map do |rr|
-        next if local_rules.detect { |lr| lr.column === rr.column && lr.relation === rr.relation && lr.condition === rr.condition }
-        { column: rr.column, relation: rr.relation, condition: rr.condition, collection_id: local_collection.id }
-      end
-
-      Shop::Collection::Rule.import! rules.compact
+    def initialize(local_shop)
+      @local_shop = define_local_shop(local_shop)
+      @local_shop.activate_session!
     end
-  end
 
-  private
+    def call
+      remote_collections.each do |rc|
+        Shop::Collection.downsync!(rc, @local_shop)
+      end
+    end
 
-  def remote_collections
-    @collections ||= ShopifyAPI::SmartCollection.find(:all)
+    private
+
+    def remote_collections
+      @collections ||= ShopifyAPI::SmartCollection.find(:all)
+    end
   end
 end

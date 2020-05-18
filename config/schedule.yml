@@ -1,4 +1,4 @@
 downsync_job:
-  cron: "0 * * * *"
+  cron: "0 0,6,12,18 * * *"
   class: "Shopify::DownsyncWorker"
   queue: low

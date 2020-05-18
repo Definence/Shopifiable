@@ -2,8 +2,6 @@ class Checkouts::LineItemsController < ApplicationController
   def create
     checkout_id = request.cookies['checkout_id']
 
-    binding.pry
-
     # response = storefront.query do
     #   mutation do
     #     checkoutLineItemsReplace(checkoutId: checkout_id, lineItems: []) do

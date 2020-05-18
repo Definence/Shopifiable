@@ -1,15 +1,17 @@
 %div{ id: 'product-container' }
   %div{ id: 'product-container-left' }
     %h1{ id: 'title' }=@product.title
-    =@product.body_html.html_safe
-    %span{ id: 'price' }="$ #{@product.variants.first.price}"
+    =@product.description_html.html_safe
+    %span{ id: 'price' }="$"
     %br
-    = form_tag checkouts_line_items_path, method: :post do
+    = form_tag checkouts_line_items_path, method: :post, id: 'cart-form' do
       = hidden_field_tag(:authenticity_token, form_authenticity_token)
       = label_tag(:variant_id, 'Size')
-      = select(:line_item, :variant_id, options_for_select(@sizes.map{|s| [s[:label], s[:value]]}), required: true, id: 'size')
+      = select :line_item, :variant_id, required: true do
+        = @variants.each do |v|
+          = content_tag(:option, v[:label], value: v[:value], price: v[:price], class: 'variants-option', currency: @product.currency)
       = label_tag(:quantity, 'Quantity')
       = number_field(:line_item, :quantity, in: 1...20, required: true)
       = submit_tag('ADD TO CART', id: 'add-to-cart')
   %div{ id: 'product-container-right' }
-    %img{ src: @product.image.src }
+    %img{ src: @product.images[1].src }

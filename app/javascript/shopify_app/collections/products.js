@@ -1,9 +1,24 @@
 // import { setCartCounter } from '../common/cart'
 
-document.addEventListener('DOMContentLoaded', () => {
-  // const form = document.getElementById('cart-form')
+document.addEventListener('turbolinks:load', () => {
+  const form = document.getElementById('cart-form')
 
-  // if (form) {
+  if (form) {
+    const selectNode = document.getElementById('line_item_variant_id')
+    const options = document.querySelectorAll('.variants-option')
+    const priceNode = document.getElementById('price')
+    const defaultOption = document.querySelector('.variants-option')
+    const currency = defaultOption.getAttribute('currency')
+    let price = defaultOption.getAttribute('price')
+
+    priceNode.innerHTML = `${currency} ${price}`
+
+    selectNode.addEventListener('change', (e) => {
+      const selectedOpt = document.querySelector(`[value="${e.target.value}"]`)
+      price = selectedOpt.getAttribute('price')
+      priceNode.innerHTML = `${currency} ${price}`
+    })
+
   //   const quantityInput = document.getElementById('quantity')
   //   quantityInput.defaultValue = 1
 
@@ -28,5 +43,5 @@ document.addEventListener('DOMContentLoaded', () => {
   //     // localStorage.setItem('cart', JSON.stringify(cart))
   //     // setCartCounter()
   //   })
-  // }
+  }
 })

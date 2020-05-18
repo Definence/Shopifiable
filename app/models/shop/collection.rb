@@ -18,4 +18,8 @@ class Shop::Collection < ActiveRecord::Base
   def self.downsync_all! local_shop
     Shopify::Downsync::CollectionsService.new(local_shop).call
   end
+
+  def self.downsync!(handle, local_shop)
+    Shopify::Downsync::CollectionService.new(handle, local_shop).call
+  end
 end
