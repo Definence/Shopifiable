@@ -220,7 +220,7 @@ GEM
     redirect_safely (1.0.0)
       activemodel
     redis (4.1.4)
-    rexml (3.2.4)
+    rexml (3.2.5)
     rubocop (0.83.0)
       parallel (~> 1.10)
       parser (>= 2.7.0.1)
